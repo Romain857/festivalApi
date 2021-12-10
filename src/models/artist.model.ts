@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Event} from './event.model';
 
 @model()
 export class Artist extends Entity {
@@ -33,12 +34,8 @@ export class Artist extends Entity {
   })
   heureFin: string;
 
-  @property({
-    type: 'number',
-    required: true,
-  })
+  @belongsTo(() => Event, {name: 'event'})
   idEvent: number;
-
 
   constructor(data?: Partial<Artist>) {
     super(data);
